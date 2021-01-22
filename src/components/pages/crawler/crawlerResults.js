@@ -32,7 +32,7 @@ const CrawlerResults = ({ results }) => {
         const scripts = [...dom.scripts];
         const links = scripts.map(res => res.src)
             .filter(url => !!url)
-            .map(url => url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)[1]);
+            .map(url => url.split('/').pop().split('#')[0].split('?')[0]);
         return [...new Set(links)];
     }
 
@@ -46,18 +46,18 @@ const CrawlerResults = ({ results }) => {
                 <div className="library-list container" id="library-list">
                     {searchResults.map(website => (
                         <div key={website.cacheId} className="row library-row">
-                            <div className="col-6 library-site">
+                            <div className="col-5 library-site">
                                 <h3>{website.title}</h3>
                                 <p>{website.snippet}</p>
                                 <a href={website.link} target="_blank">{website.link}</a>
                             </div>
-                            <div className="col-3 library-urls">
+                            <div className="col-5 library-urls">
                                 {website.libraries.map((url, index) => (
                                     <li key={url+index}>{url}</li>
                                 ))
                                 }
                             </div>
-                            <div className="col-3 count-container">
+                            <div className="col-2 count-container">
                                 <span className="library-count">{website.libraries.length}</span>
                                 <span className="library-text">{intl.noOfLibaries}</span>
                             </div>
