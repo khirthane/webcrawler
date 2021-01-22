@@ -53,13 +53,13 @@ const CrawlerResults = ({ results }) => {
                             </div>
                             <div className="col-4 library-urls">
                                 {website.libraries.map((url, index) => (
-                                    <li key={url+index}>{url}</li>
+                                    <li key={url+index}>{index+1}. {url}</li>
                                 ))
                                 }
                             </div>
                             <div className="col-3 count-container">
-                                <span className="library-count">{website.libraries.length}</span>
                                 <span className="library-text">{intl.noOfLibaries}</span>
+                                <span className="library-count">{website.libraries.length}</span>
                             </div>
                         </div>
                     ))}
